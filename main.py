@@ -11,6 +11,8 @@ def comprimirBackups():
         #cmd = 'tar zcf %s %s' % ('backups_comprimidos/'+nombreBackupComprimido, 'backups/'+backup)
         cmd = '	tar -c %s | bzip2 > %s' % ('backups/'+backup, 'backups_comprimidos/'+nombreBackupComprimido) # Compresion mas fuerte
 
+        remove('backups/'+backup) # Borramos el archivo original despues de estar comprimido
+
         resCmd = popen(cmd).read()
 
         print('Respuesta al comando de comprimir: %s' % resCmd)
@@ -23,7 +25,7 @@ def crearBackup(db):
     cmd = 'mysqldump --user=%s --password=%s %s --lock-tables=false > %s' % \
           (credenciales['usuario'], credenciales['pass'], db, rutaBackup)
 
-    resCmd = popen(cmd).read()  # Ejecutamos el comando y leemos la respuesta
+    resCmd = popen(cmd).read() # Ejecutamos el comando y leemos la respuesta
 
     print('Respuest al comando de crear backup: %s' % resCmd)
 
