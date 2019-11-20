@@ -1,7 +1,8 @@
 
 bases_de_datos = [
     'prueba_backup1',
-    'ubiety'
+    'ubiety',
+    'lectorcarnet'
 ]
 
 credenciales = {
